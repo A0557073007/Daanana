@@ -1,10 +1,32 @@
-<!doctype html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>AHMED | ALMOGHANI</title>
-<style>*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:#f5f0e6}</style>
+<audio id="quranAudio" preload="auto" loop playsinline>
+  <source src="quran.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+(function () {
+  const audio = document.getElementById('quranAudio');
+  let started = false;
+
+  function startQuran() {
+    if (started) return;
+
+    audio.volume = 0.65;
+
+    audio.play()
+      .then(() => {
+        started = true;
+        document.removeEventListener('touchstart', startQuran, true);
+        document.removeEventListener('pointerdown', startQuran, true);
+        document.removeEventListener('click', startQuran, true);
+      })
+      .catch(() => {});
+  }
+
+  document.addEventListener('touchstart', startQuran, true);
+  document.addEventListener('pointerdown', startQuran, true);
+  document.addEventListener('click', startQuran, true);
+})();
+</script>
 </head>
 <body>
 <!-- أضف محتوى صفحة أحمد هنا لاحقًا -->
